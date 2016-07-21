@@ -116,34 +116,42 @@ describe('OptionsParser -', () => {
 
         expect(OptionsParser.fromLiteral({
           optimizePlacement: 'true',
-          transitionPlacement: 'false'
+          transitionPlacement: 'false',
+          reusePopover: 'true'
         })).toEqual({
           optimizePlacement: true,
-          transitionPlacement: false
+          transitionPlacement: false,
+          reusePopover: true
         });
 
         expect(OptionsParser.fromLiteral({
           optimizePlacement: true,
-          transitionPlacement: false
+          transitionPlacement: false,
+          reusePopover: false
         })).toEqual({
           optimizePlacement: true,
-          transitionPlacement: false
+          transitionPlacement: false,
+          reusePopover: false
         });
 
         expect(OptionsParser.fromLiteral({
           optimizePlacement: 1,
-          transitionPlacement: 0
+          transitionPlacement: 0,
+          reusePopover: 0
         })).toEqual({
           optimizePlacement: true,
-          transitionPlacement: false
+          transitionPlacement: false,
+          reusePopover: false
         });
 
         expect(OptionsParser.fromLiteral({
           optimizePlacement: '1',
-          transitionPlacement: '0'
+          transitionPlacement: '0',
+          reusePopover: '1'
         })).toEqual({
           optimizePlacement: false,
-          transitionPlacement: false
+          transitionPlacement: false,
+          reusePopover: false
         });
 
       });
@@ -229,6 +237,11 @@ describe('OptionsParser -', () => {
     it('should set fadeDuration from element attribute', () => {
       let opts = fromSingleAttribute('popgun-fade-duration', '123');
       expect(opts.fadeDuration).toEqual(123);
+    });
+
+    it('should set reusePopover from element attribute', () => {
+      let opts = fromSingleAttribute('popgun-reuse-popover', 'false');
+      expect(opts.reusePopover).toEqual(false);
     });
 
     it('should exclude popgun-schema', () => {

@@ -16,6 +16,7 @@ interface IOptions {
     fadeDuration?: number;
     cushion?: number;
     containerCushion?: number;
+    reusePopover?: boolean;
 }
 
 export default IOptions;
