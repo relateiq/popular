@@ -117,41 +117,49 @@ describe('OptionsParser -', () => {
         expect(OptionsParser.fromLiteral({
           optimizePlacement: 'true',
           transitionPlacement: 'false',
-          reusePopover: 'true'
+          reusePopover: 'true',
+          disableClickOff: 'true'
         })).toEqual({
           optimizePlacement: true,
           transitionPlacement: false,
-          reusePopover: true
+          reusePopover: true,
+          disableClickOff: true
         });
 
         expect(OptionsParser.fromLiteral({
           optimizePlacement: true,
           transitionPlacement: false,
-          reusePopover: false
+          reusePopover: false,
+          disableClickOff: true
         })).toEqual({
           optimizePlacement: true,
           transitionPlacement: false,
-          reusePopover: false
+          reusePopover: false,
+          disableClickOff: true
         });
 
         expect(OptionsParser.fromLiteral({
           optimizePlacement: 1,
           transitionPlacement: 0,
-          reusePopover: 0
+          reusePopover: 0,
+          disableClickOff: 0
         })).toEqual({
           optimizePlacement: true,
           transitionPlacement: false,
-          reusePopover: false
+          reusePopover: false,
+          disableClickOff: false
         });
 
         expect(OptionsParser.fromLiteral({
           optimizePlacement: '1',
           transitionPlacement: '0',
-          reusePopover: '1'
+          reusePopover: '1',
+          disableClickOff: '0'
         })).toEqual({
           optimizePlacement: false,
           transitionPlacement: false,
-          reusePopover: false
+          reusePopover: false,
+          disableClickOff: false
         });
 
       });
@@ -242,6 +250,11 @@ describe('OptionsParser -', () => {
     it('should set reusePopover from element attribute', () => {
       let opts = fromSingleAttribute('popgun-reuse-popover', 'false');
       expect(opts.reusePopover).toEqual(false);
+    });
+
+    it('should set disableClickOff from element attribute', () => {
+      let opts = fromSingleAttribute('popgun-disable-click-off', 'true');
+      expect(opts.disableClickOff).toEqual(true);
     });
 
     it('should exclude popgun-schema', () => {

@@ -76,6 +76,10 @@ describe('Options - ', () => {
       expect((new Options()).reusePopover).toBe(true);
     });
 
+    it('should default disableClickOff to false', () => {
+      expect((new Options()).disableClickOff).toBe(false);
+    });
+
   });
 
   describe('extend - ', () => {

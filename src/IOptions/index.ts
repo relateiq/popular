@@ -17,6 +17,7 @@ interface IOptions {
     cushion?: number;
     containerCushion?: number;
     reusePopover?: boolean;
+    disableClickOff?: boolean;
 }
 
 export default IOptions;

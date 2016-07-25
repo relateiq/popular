@@ -21,6 +21,7 @@ export default class Options implements IOptions {
   cushion: number;
   containerCushion: number;
   reusePopover: boolean;
+  disableClickOff: boolean;
 
   static fromElement(el: Element): Options {
     return (new Options()).extend(OptionsParser.fromElement(el));

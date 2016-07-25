@@ -33,6 +33,7 @@ export default class OptionsParser {
           case 'optimizePlacement':
           case 'transitionPlacement':
           case 'reusePopover':
+          case 'disableClickOff':
             value = typeof value === 'string' ? value === 'true' : !!value;
             break;
         }

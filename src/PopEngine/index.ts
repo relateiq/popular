@@ -138,6 +138,7 @@ export class PopEngine {
       this._maybeSetParentChildRelationship(pop);
       if (isAlreadyShowing && !!container) {
         oldPop.targetEl.removeAttribute('pinned-pop');
+        oldPop.targetEl.removeAttribute('unpinned-pop');
         if (!!oldPop && !!oldPop.childPops.length) {
           oldPop.childPops.forEach(function(child: Pop): void {
             this.hidePop(child.targetEl, false);
@@ -188,10 +189,12 @@ export class PopEngine {
         this.setState(pop, PopStateType.PRE_SHOW, pop.opts, null, false);
 
         this._maybeClearTimeout(this._timeouts.hoverdelay, null);
-        this._handlers[groupId] = this.escapeStack.add(function(): boolean {
-          this.hidePop(pop.targetEl, false);
-          return true;
-        }.bind(this));
+        if (!pop.opts.disableClickOff) {
+          this._handlers[groupId] = this.escapeStack.add(function(): boolean {
+            this.hidePop(pop.targetEl, false);
+            return true;
+          }.bind(this));
+        }
 
         // SHOWING
         this.setState(pop, PopStateType.SHOWING, pop.opts, null, false);
