@@ -136,7 +136,7 @@ export class PopEngine {
       let oldPop = this.getPopFromGroupId(groupId);
       this.addPopToPopStore(targetElement.getAttribute('popgun-group'), pop);
       this._maybeSetParentChildRelationship(pop);
-      if (isAlreadyShowing && !!container) {
+      if (isAlreadyShowing && !!container && !!pop.opts.reusePopover) {
         oldPop.targetEl.removeAttribute('pinned-pop');
         oldPop.targetEl.removeAttribute('unpinned-pop');
         if (!!oldPop && !!oldPop.childPops.length) {
@@ -152,11 +152,15 @@ export class PopEngine {
         }
       }
 
-      if (isAlreadyShowing && !!container) {
+      if (isAlreadyShowing && !!container && !!pop.opts.reusePopover) {
         // if pop is already showing for group, reuse
         container.removeChild(container.getElementsByClassName('pop-content')[0]);
         this._maybeClearHandler(this._handlers[groupId]);
       } else {
+        if (!!oldPop) {
+          let popOver = closest(oldPop.popOver.element, 'div[pop=""]');
+          document.body.removeChild(popOver);
+        }
         container = this.createPopElement(targetElement);
         document.body.appendChild(container);
       }
