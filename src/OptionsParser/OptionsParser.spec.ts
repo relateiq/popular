@@ -117,40 +117,48 @@ describe('OptionsParser -', () => {
         expect(OptionsParser.fromLiteral({
           optimizePlacement: 'true',
           transitionPlacement: 'false',
+          reusePopover: 'true',
           disableClickOff: 'true'
         })).toEqual({
           optimizePlacement: true,
           transitionPlacement: false,
+          reusePopover: true,
           disableClickOff: true
         });
 
         expect(OptionsParser.fromLiteral({
           optimizePlacement: true,
           transitionPlacement: false,
+          reusePopover: false,
           disableClickOff: true
         })).toEqual({
           optimizePlacement: true,
           transitionPlacement: false,
+          reusePopover: false,
           disableClickOff: true
         });
 
         expect(OptionsParser.fromLiteral({
           optimizePlacement: 1,
           transitionPlacement: 0,
+          reusePopover: 0,
           disableClickOff: 0
         })).toEqual({
           optimizePlacement: true,
           transitionPlacement: false,
+          reusePopover: false,
           disableClickOff: false
         });
 
         expect(OptionsParser.fromLiteral({
           optimizePlacement: '1',
           transitionPlacement: '0',
+          reusePopover: '1',
           disableClickOff: '0'
         })).toEqual({
           optimizePlacement: false,
           transitionPlacement: false,
+          reusePopover: false,
           disableClickOff: false
         });
 
@@ -237,6 +245,11 @@ describe('OptionsParser -', () => {
     it('should set fadeDuration from element attribute', () => {
       let opts = fromSingleAttribute('popgun-fade-duration', '123');
       expect(opts.fadeDuration).toEqual(123);
+    });
+
+    it('should set reusePopover from element attribute', () => {
+      let opts = fromSingleAttribute('popgun-reuse-popover', 'false');
+      expect(opts.reusePopover).toEqual(false);
     });
 
     it('should set disableClickOff from element attribute', () => {

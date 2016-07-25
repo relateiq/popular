@@ -17,6 +17,7 @@ let defaultOptions: IOptions = {
     fadeDuration: 100,
     cushion: 8,
     containerCushion: 10,
+    reusePopover: true,
     disableClickOff: false
 };
 
