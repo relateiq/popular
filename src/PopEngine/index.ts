@@ -16,19 +16,13 @@ const createEscapeStack = require('escape-stack').default;
 
 export class PopEngine {
 
-  _transitionendCallbacks: {
+  private _transitionendCallbacks: {
     [groupId: string]: any
   } = {};
 
-  _escapeStack: any = null;
-  _scrollListener: any = null;
-  _zIndexManager: any = null;
-
-  constructor() {
-    this._zIndexManager = createZIndexManager();
-    this._escapeStack = createEscapeStack();
-    this._scrollListener = this._positionOpenPops.bind(this);
-  }
+  private _zIndexManager: any = createZIndexManager();
+  private _escapeStack: any = createEscapeStack();
+  private _scrollListener: any = this._positionOpenPops.bind(this);
 
   public isPopTarget(el: Element): boolean {
     return !!(el && el.hasAttribute('popgun'));
