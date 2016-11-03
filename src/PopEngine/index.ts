@@ -20,15 +20,9 @@ export class PopEngine {
     [groupId: string]: any
   } = {};
 
-  private _escapeStack: any;
-  private _scrollListener: any;
-  private _zIndexManager: any;
-
-  constructor() {
-    this._zIndexManager = createZIndexManager();
-    this._escapeStack = createEscapeStack();
-    this._scrollListener = this._positionOpenPops.bind(this);
-  }
+  private _zIndexManager: any = createZIndexManager();
+  private _escapeStack: any = createEscapeStack();
+  private _scrollListener: any = this._positionOpenPops.bind(this);
 
   public isPopTarget(el: Element): boolean {
     return !!(el && el.hasAttribute('popgun'));
