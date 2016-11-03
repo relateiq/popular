@@ -20,11 +20,11 @@ export class PopEngine {
     [groupId: string]: any
   } = {};
 
-  constructor(
-    private _escapeStack: any,
-    private _scrollListener: any,
-    private _zIndexManager: any
-  ) {
+  private _escapeStack: any;
+  private _scrollListener: any;
+  private _zIndexManager: any;
+
+  constructor() {
     this._zIndexManager = createZIndexManager();
     this._escapeStack = createEscapeStack();
     this._scrollListener = this._positionOpenPops.bind(this);
